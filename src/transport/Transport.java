@@ -1,14 +1,15 @@
 package transport;
 
-public class Transport {
-    protected String mark;
-    protected String model;
-    protected int year;
-    protected String country;
-    protected String colour;
-    protected int maxSpeed;
+public abstract class Transport {
+    private String mark;
+    private String model;
+    private final int year;
+    private final String country;
+    private String colour;
+    private int maxSpeed;
+    private  String fuelType;
 
-    public Transport(String mark, String model, int year, String country, String colour, int maxSpeed) {
+    public Transport(String mark, String model, int year, String country, String colour, int maxSpeed, String fuelType) {
         if (mark != null && !mark.isEmpty()) {
             this.mark = mark;
         } else {
@@ -39,6 +40,11 @@ public class Transport {
         } else {
             this.maxSpeed = maxSpeed;
         }
+        if (fuelType != null && !fuelType.isEmpty()) {
+            this.fuelType = fuelType;
+        } else {
+            this.fuelType = "incorrect";
+        }
     }
 
     public void printTransport() {
@@ -49,6 +55,8 @@ public class Transport {
                 ", цвет: " + getColour() +
                 ", скорость: " + getMaxSpeed() + " км/ч.");
     }
+
+    public abstract void refill();
     public String getMark() {
         return mark;
     }
@@ -90,5 +98,11 @@ public class Transport {
     }
     public void setMaxSpeed(int maxSpeed) {
         this.maxSpeed = maxSpeed;
+    }
+    public String getFuelType() {
+        return fuelType;
+    }
+    public void setFuelType(String fuelType) {
+        this.fuelType = fuelType;
     }
 }

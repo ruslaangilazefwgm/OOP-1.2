@@ -1,14 +1,14 @@
 package transport;
 public class Train extends Transport {
-    protected int tripPrice;
-    protected int tripTime;
-    protected String departStation;
-    protected String arriveStantion;
-    protected int vagonCount;
+    private int tripPrice;
+    private int tripTime;
+    private String departStation;
+    private String arriveStantion;
+    private int vagonCount;
 
-    public Train(String mark, String model, int year, String country, String colour, int maxSpeed,
+    public Train(String mark, String model, int year, String country, String colour, int maxSpeed, String fuelType,
                  int tripPrice, int tripTime, String departStation, String arriveStantion, int vagonCount){
-        super(mark, model, year, country, colour, maxSpeed);
+        super(mark, model, year, country, colour, maxSpeed, fuelType);
         if (tripPrice < 0) {
             this.tripPrice = Math.abs(tripPrice);
         } else {
@@ -34,6 +34,11 @@ public class Train extends Transport {
         } else {
             this.vagonCount = vagonCount;
         }
+        if (fuelType != "Дизель" ) {
+            this.fuelType = "incorrect";
+        } else {
+            this.fuelType = fuelType;
+        }
     }
     public void printTrain() {
         System.out.println(getMark() + " " + getModel()
@@ -46,8 +51,14 @@ public class Train extends Transport {
         );
     }
 
-
-
+    @Override
+    public void refill() {
+        if (fuelType == "Дизель") {
+            System.out.println("Заправить " + fuelType);
+        } else {
+            System.out.println("Топливо не подходит");
+        }
+    }
 
     public int getTripPrice() {
         return tripPrice;

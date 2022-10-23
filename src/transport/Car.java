@@ -70,19 +70,19 @@ public class Car extends Transport {
             }
         }
     }
-    double volume;
-    String kpp;
+    private double volume;
+    private String kpp;
     private String bodyType;
-    String regNumber;
+    private String regNumber;
     private int sitCount;
-    boolean summerTires;
+    private boolean summerTires;
     private Key key;
     private Insurance insurance;
 
     public Car(String mark, String model, int maxSpeed, double volume, String colour, int year, String country,
-               String kpp, String bodyType, String regNumber, int sitCount, boolean summerTires, Key key,
+               String kpp, String fuelType, String bodyType, String regNumber, int sitCount, boolean summerTires, Key key,
                Insurance insurance) {
-        super(mark, model, year, country, colour, maxSpeed);
+        super(mark, model, year, country, colour, maxSpeed, fuelType);
         if (Double.compare(volume,0) == 0) {
             this.volume = 1.5;
         } else {
@@ -119,6 +119,11 @@ public class Car extends Transport {
         } else {
             this.insurance = insurance;
         }
+        if (fuelType != "Бензин" || fuelType != "Дизель" || fuelType != "Электричество") {
+            this.fuelType = "incorrect";
+        } else {
+            this.fuelType = fuelType;
+        }
     }
 
     public void printAuto() {
@@ -150,6 +155,12 @@ public class Car extends Transport {
         return Character.isDigit(chars[1]) && Character.isDigit(chars[2]) && Character.isDigit(chars[3]) && Character.isDigit(chars[6])
                 && Character.isDigit(chars[7]) && Character.isDigit(chars[8]);
     }
+
+    @Override
+    public void refill() {
+            System.out.println("Заправить машину: " + fuelType);
+    }
+
     public double getVolume() {
         return volume;
     }
