@@ -7,7 +7,7 @@ public abstract class Transport {
     private final String country;
     private String colour;
     private int maxSpeed;
-    private  String fuelType;
+    public  String fuelType;
 
     public Transport(String mark, String model, int year, String country, String colour, int maxSpeed, String fuelType) {
         if (mark != null && !mark.isEmpty()) {
